@@ -1,0 +1,14 @@
+.navbar {
+  background: linear-gradient(to right, #ffffff, #f7d146, #ffffff);
+  display: flex;
+  justify-content: space-between;
+  padding: 0.2rem 1.5rem;
+}
+
+.navbar__logo {
+  width: max(10%, 6rem);
+}
+
+.navbar__profileIcon {
+  width: 4rem;
+}
