@@ -48,3 +48,8 @@
   width: fit-content;
   cursor: pointer;
 }
+
+.add_form__img__upload img {
+  width: 120px;
+  cursor: pointer;
+}
