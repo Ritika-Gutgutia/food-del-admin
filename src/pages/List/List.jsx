@@ -1,12 +1,11 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars*/
 import React, { useEffect, useState } from "react";
 import "./List.css";
 import axios from "axios";
 import { toast } from "react-toastify";
-import "../Add/Add.css";
 
-const List = () => {
-  const url = "http://localhost:5000";
+const List = ({ url }) => {
   const [list, setList] = useState([]);
 
   const fetchList = async () => {
@@ -19,19 +18,61 @@ const List = () => {
     }
   };
 
+  const removeFoodHandler = async (itemId) => {
+    const response = await axios.post(`${url}/api/food/remove`, { id: itemId });
+    // we made a post request and removed that item
+    // if (response.data.success) {
+    //   setList(response.data.data);
+    //   toast.success(response.data.message);
+    // } else {
+    //   toast.error(response.data.message);
+    // }
+    console.log(response.data.data);
+    await fetchList();
+
+    if (response.data.success) {
+      toast.success(response.data.message);
+    } else {
+      toast.error(response.data.error);
+    }
+    // setList(list);
+    // console.log(list);
+  };
+
   useEffect(() => {
     fetchList();
   }, []);
+
   return (
-    <div className="list">
+    <div className="list flex-col">
       <p>All Foods List</p>
-      <div className="list__table">
+      <div className="list__table__title">
         <b>Image</b>
         <b>Name</b>
         <b>Category</b>
         <b>Price</b>
         <b>Action</b>
       </div>
+      {list.map((item, index) => {
+        return (
+          <div key={index} className="list__table__format">
+            <img
+              className="list__table__format__image"
+              src={`${url}/uploads/` + item.image}
+              alt=""
+            />
+            <p>{item.name}</p>
+            <p>{item.category}</p>
+            <p>{item.price}</p>
+            <p
+              onClick={() => removeFoodHandler(item._id)}
+              className="list__table__format__cross"
+            >
+              x
+            </p>
+          </div>
+        );
+      })}
     </div>
   );
 };

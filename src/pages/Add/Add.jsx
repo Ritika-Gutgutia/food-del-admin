@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars*/
 import React from "react";
 import "./Add.css";
@@ -6,8 +7,7 @@ import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const Add = () => {
-  const url = "http://localhost:5000";
+const Add = ({ url }) => {
   const [image, setImage] = useState(false);
   const [data, setData] = useState({
     name: "",
@@ -30,6 +30,7 @@ const Add = () => {
   // useEffect(() => {
   //   console.log(data);
   // }, [data]);
+
   const onSubmitHandler = async (event) => {
     event.preventDefault();
     const formData = new FormData();
@@ -47,7 +48,9 @@ const Add = () => {
         price: "",
         category: "Salad",
       });
+
       setImage(false);
+      console.log(response.data.data);
       console.log("Food added successfully");
       toast.success(response.data.message);
     } else {
@@ -87,7 +90,7 @@ const Add = () => {
         <div className="add__form__content add__form__product__description">
           <p>Product description</p>
           <textarea
-            onChange={(e) => handleChange(e)}
+            onChange={handleChange}
             value={data.description}
             name="description"
             className="add__form__content__input"
@@ -101,7 +104,7 @@ const Add = () => {
           <div className="add__form__content add__form__product__category">
             <p>Product category</p>
             <select
-              onChange={(e) => handleChange(e)}
+              onChange={handleChange}
               className="add__form__product__category__select"
               name="category"
             >
@@ -120,6 +123,7 @@ const Add = () => {
             <input
               onChange={handleChange}
               className="add__form__content__input"
+              value={data.price}
               type="Number"
               min="0"
               placeholder="Rs. 20"
