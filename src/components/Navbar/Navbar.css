@@ -2,11 +2,13 @@
   background: linear-gradient(to right, #ffffff, #f7d146, #ffffff);
   display: flex;
   justify-content: space-between;
-  padding: 0.2rem 1.5rem;
+  padding: 1rem 2.2rem;
 }
 
 .navbar__logo {
-  width: max(10%, 6rem);
+  color: #d6981c;
+  align-self: center;
+  font-weight: 700;
 }
 
 .navbar__profileIcon {

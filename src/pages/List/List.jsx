@@ -46,13 +46,6 @@ const List = ({ url }) => {
   return (
     <div className="list flex-col">
       <p>All Foods List</p>
-      <div className="list__table__title">
-        <b>Image</b>
-        <b>Name</b>
-        <b>Category</b>
-        <b>Price</b>
-        <b>Action</b>
-      </div>
       {list.map((item, index) => {
         return (
           <div key={index} className="list__table__format">
@@ -63,7 +56,7 @@ const List = ({ url }) => {
             />
             <p>{item.name}</p>
             <p>{item.category}</p>
-            <p>{item.price}</p>
+            <p>Rs.{item.price}</p>
             <p
               onClick={() => removeFoodHandler(item._id)}
               className="list__table__format__cross"

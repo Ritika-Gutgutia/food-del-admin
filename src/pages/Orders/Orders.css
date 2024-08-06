@@ -24,8 +24,7 @@
 }
 
 .order__add__list__item select {
-  background-color: #ffe8e4;
-  border: 1px solid tomato;
+  background-color: #d6981c;
   border-radius: 5px;
   width: max(11vw, 120px);
   padding: 10px;

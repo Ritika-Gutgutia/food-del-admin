@@ -7,9 +7,7 @@ import { assets } from "../../assets/assets";
 const Navbar = () => {
   return (
     <div className="navbar">
-      <p className="navbar__logo" alt="logo">
-        LOGO
-      </p>
+      <h1 className="navbar__logo">FoodMato</h1>
       <img className="navbar__profileIcon" src={assets.profileIcon} />
     </div>
   );
