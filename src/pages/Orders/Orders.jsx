@@ -55,22 +55,32 @@ const Orders = ({ url }) => {
                   })}
                 </p>
 
+                {/* {order.address
+                  ? `${order.address.firstName} ${order.address.lastName}`
+                  : "Unknown Name"} */}
+
                 <p className="order__add__list__item__name">
-                  {order.address.firstName + " " + order.address.lastName}
+                  {order.address
+                    ? `${order.address.firstName} ${order.address.lastName}`
+                    : "Unknown Name"}
                 </p>
                 <div className="order__add__list__item__address">
-                  <p>{order.address.street + ","}</p>
+                  <p>{order.address ? `${order.address.street}` : ""}</p>
+
                   <p>
-                    {order.address.city +
-                      ", " +
-                      order.address.state +
-                      ", " +
-                      order.address.country +
-                      ", " +
-                      order.address.zipcode}
+                    {order.address &&
+                      order.address.city +
+                        ", " +
+                        order.address.state +
+                        ", " +
+                        order.address.country +
+                        ", " +
+                        order.address.zipcode}
                   </p>
                 </div>
-                <p className="order__add__list__phone">{order.address.phone}</p>
+                <p className="order__add__list__phone">
+                  {order.address && order.address.phone}
+                </p>
               </div>
               <p>Items : {order.items.length}</p>
               <p>Rs.{order.amount}</p>

@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import "./List.css";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { UNSAFE_ErrorResponseImpl } from "react-router-dom";
 
 const List = ({ url }) => {
   const [list, setList] = useState([]);
@@ -27,15 +28,16 @@ const List = ({ url }) => {
     // } else {
     //   toast.error(response.data.message);
     // }
-    console.log(response.data.data);
+    console.log(response.data.data, "HELOO");
     await fetchList();
 
     if (response.data.success) {
+      ///setList(response.data.data);
       toast.success(response.data.message);
     } else {
       toast.error(response.data.error);
     }
-    // setList(list);
+
     // console.log(list);
   };
 
