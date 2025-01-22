@@ -17,7 +17,6 @@ const Add = ({ url }) => {
   });
 
   const handleChange = (event) => {
-    console.log(event);
     const name = event.target.name;
     const value = event.target.value;
 
@@ -26,10 +25,6 @@ const Add = ({ url }) => {
       [name]: value,
     }));
   };
-
-  // useEffect(() => {
-  //   console.log(data);
-  // }, [data]);
 
   const onSubmitHandler = async (event) => {
     event.preventDefault();
@@ -41,7 +36,6 @@ const Add = ({ url }) => {
     formData.append("image", image);
     const response = await axios.post(`${url}/api/food/add`, formData);
     if (response.data.success) {
-      // we have to reset this field value
       setData({
         name: "",
         description: "",
@@ -50,8 +44,6 @@ const Add = ({ url }) => {
       });
 
       setImage(false);
-      console.log(response.data.data);
-      console.log("Food added successfully");
       toast.success(response.data.message);
     } else {
       toast.error(response.data.message);
@@ -60,7 +52,7 @@ const Add = ({ url }) => {
   return (
     <div className="add">
       <form className="add__form" onSubmit={onSubmitHandler}>
-        <div className=" add__form__content add_form__img__upload">
+        <div className="add__form__content add_form__img__upload">
           <p>Upload Image</p>
           <label htmlFor="image">
             <img

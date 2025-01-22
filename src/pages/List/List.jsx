@@ -4,14 +4,12 @@ import React, { useEffect, useState } from "react";
 import "./List.css";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { UNSAFE_ErrorResponseImpl } from "react-router-dom";
 
 const List = ({ url }) => {
   const [list, setList] = useState([]);
 
   const fetchList = async () => {
     const response = await axios.get(`${url}/api/food/list`);
-    console.log(response.data);
     if (response.data.success) {
       setList(response.data.data);
     } else {
@@ -21,13 +19,6 @@ const List = ({ url }) => {
 
   const removeFoodHandler = async (itemId) => {
     const response = await axios.post(`${url}/api/food/remove`, { id: itemId });
-    // we made a post request and removed that item
-    // if (response.data.success) {
-    //   setList(response.data.data);
-    //   toast.success(response.data.message);
-    // } else {
-    //   toast.error(response.data.message);
-    // }
     console.log(response.data.data, "HELOO");
     await fetchList();
 

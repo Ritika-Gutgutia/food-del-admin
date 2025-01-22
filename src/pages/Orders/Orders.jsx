@@ -16,7 +16,6 @@ const Orders = ({ url }) => {
 
     if (response.data.success === "true") {
       setOrders(response.data.data);
-      console.log(response.data.data);
     } else {
       toast.error("Error");
     }
@@ -27,7 +26,6 @@ const Orders = ({ url }) => {
       orderId,
       status: event.target.value,
     });
-    console.log(event, orderId);
     if (response.data.success) {
       await fetchAllOrders();
     }
@@ -54,11 +52,6 @@ const Orders = ({ url }) => {
                     }
                   })}
                 </p>
-
-                {/* {order.address
-                  ? `${order.address.firstName} ${order.address.lastName}`
-                  : "Unknown Name"} */}
-
                 <p className="order__add__list__item__name">
                   {order.address
                     ? `${order.address.firstName} ${order.address.lastName}`
